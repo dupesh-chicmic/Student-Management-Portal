@@ -59,7 +59,7 @@ $(document).ready(function () {
                 date: "Enter a valid date."
             },
             course: {
-                required: "Please select a course."
+                required: "Please select at least one course."
             }
         },
         submitHandler: function (form) {

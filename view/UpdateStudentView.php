@@ -10,8 +10,6 @@ $con = Database::connectDB();
     $sql = "SELECT * FROM students WHERE id = '$id'";
     $result = $con->query($sql);
     $row = $result->fetch_assoc();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +30,7 @@ $con = Database::connectDB();
 <div class="container w-75 mt-5 p-5 pt-3 rounded bg-light">
     <h1 class="text-center mt-2 mb-5">Update Student Information</h1>
     <form id="updateForm" action="../controller/UpdateStudent.php" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?= $row['id'] ?? ''?>">
+        <input type="hidden" name="id" value="<?= $form_data['id'] ?? $row['id'] ?? '' ?>">
 
         <label>Upload Image:</label>
         <input type="file" name="image" class="form-control">
@@ -43,7 +41,7 @@ $con = Database::connectDB();
         <div class="mt-3">
             <label>Enter First Name:</label>
             <input type="text" name="first_name" placeholder="First Name" class="form-control"
-            value="<?= $row['first_name'] ?? '' ?>">
+            value="<?= $form_data['first_name'] ?? $row['first_name'] ?? '' ?>">
             <?php if (isset($error['invalid_first_name'])): ?>
                 <span class="text-danger"><?= $error['invalid_first_name'] ?></span>
             <?php endif; ?>
@@ -51,7 +49,7 @@ $con = Database::connectDB();
 
         <div class="mt-3">
             <label>Enter Last Name:</label>
-            <input type="text" name="last_name" placeholder="Last Name" class="form-control" value="<?= $row['last_name'] ?? '' ?>">
+            <input type="text" name="last_name" placeholder="Last Name" class="form-control" value="<?= $form_data['last_name'] ?? $row['last_name'] ?? '' ?>">
             <?php if (isset($error['invalid_last_name'])): ?>
                 <span class="text-danger"><?= $error['invalid_last_name'] ?></span>
             <?php endif; ?>
@@ -60,7 +58,7 @@ $con = Database::connectDB();
         <div class="mt-3">
             <label>Enter Email:</label>
             <input type="email" name="email" placeholder="Email" class="form-control"
-            value="<?= $row['email'] ?? '' ?>">
+            value="<?= $form_data['email'] ?? $row['email'] ?? '' ?>">
             <?php if (isset($error['invalid_email'])): ?>
                 <span class="text-danger"><?= $error['invalid_email'] ?></span>
             <?php endif; ?>
@@ -69,7 +67,7 @@ $con = Database::connectDB();
         <div class="mt-3">
             <label>Enter Phone:</label>
             <input type="tel" name="phone" placeholder="Phone" class="form-control"
-            value="<?= $row['phone'] ?? '' ?>">
+            value="<?= $form_data['phone'] ?? $row['phone'] ?? '' ?>">
             <?php if (isset($error['invalid_phone'])): ?>
                 <span class="text-danger"><?= $error['invalid_phone'] ?></span>
             <?php endif; ?>
@@ -78,7 +76,7 @@ $con = Database::connectDB();
         <div class="mt-3">
             <label>Enter DOB:</label>
             <input type="date" name="dob" class="form-control" 
-            value="<?= $row['dob'] ?? '' ?>">
+            value="<?= $form_data['dob'] ?? $row['dob'] ?? '' ?>">
         </div>
 
         <div class="mt-4">
@@ -88,5 +86,8 @@ $con = Database::connectDB();
 </div>
 
 <script src="../js/UpdateStudentValidation.js"></script>
+<?php
+session_destroy();
+?>
 </body>
 </html>

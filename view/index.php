@@ -23,9 +23,10 @@ $con = Database::ConnectDb();
     <div class="container my-3">
         <?php include './header.php' ?>
         <div class="row">
-            <div class="col-12">
+            <div>
                 <div class="content-header">
-                    <a href="./AddStudentView.php" class="btn btn-sm btn-success"> + Add New</a>
+                    <h3>Student Management Portal</h3>
+                    <a href="./AddStudentView.php" class="btn btn-success"> + Add New</a>
                 </div>
             </div>
         </div>

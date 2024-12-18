@@ -75,8 +75,8 @@ class UpdateStudent {
         }
 
         if (!empty($this->error)) {
-            $_SESSION['error'] = $this->error;
             $_SESSION['form_data'] = $_POST;
+            $_SESSION['error'] = $this->error;
             header('location: ../view/UpdateStudentView.php');
             exit;
         }

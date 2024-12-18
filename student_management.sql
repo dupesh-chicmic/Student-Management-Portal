@@ -66,4 +66,4 @@ CREATE TABLE IF NOT EXISTS students_topics (
     FOREIGN KEY(topic_id) REFERENCES topics(id) ON DELETE CASCADE
 );
 
-INSERT INTO students_topics (student_id, topic_id) VALUES (1,3), (1,4), (2,3), (2,4), (2,5), (3,1);
+INSERT INTO students_topics (student_id, topic_id) VALUES (1,3), (1,4), (2,3), (2,4), (2,5), (3,1), (3,2);

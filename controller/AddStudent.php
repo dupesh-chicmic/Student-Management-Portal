@@ -16,7 +16,8 @@ class AddStudent {
         $email = $_POST['email'] ?? '';
         $phone = $_POST['phone'] ?? '';
         $dob = $_POST['dob'] ?? '';
-        $courses = $_POST['course'] ?? [];
+        $course = $_POST['course'] ?? [];
+
         if (!preg_match('/^[A-Za-z]+$/', $first_name)) {
             $this->error['invalid_first_name'] = "First Name is required and only alphabets are allowed.";
         }
@@ -36,7 +37,10 @@ class AddStudent {
         if (empty($dob)) {
             $this->error['invalid_dob'] = "Date of Birth is required.";
         }
-    
+
+        if (empty($course)) {
+            $this->error['invalid_courses'] = "At least one course must be selectedd.";
+        }
         if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
             $dir = '../uploads/';
             $tempName = $_FILES['image']['tmp_name'];
@@ -82,7 +86,7 @@ class AddStudent {
 
         if ($result === TRUE) {
             $student_id = $this->con->insert_id;
-            foreach ($courses as $course_id) {
+            foreach ($course as $course_id) {
                 $sql_course = "INSERT INTO students_courses (student_id, course_id) VALUES ('$student_id', '$course_id')";
                 $this->con->query($sql_course);
                 $sql_topics = "SELECT id FROM topics WHERE course_id = '$course_id'";

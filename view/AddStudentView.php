@@ -21,6 +21,13 @@ $form_data = $_SESSION['form_data'] ?? [];
         .error{
             color: red;
         }
+        .text-danger {
+        color: red !important;.text-danger {
+    color: red !important;  /* Force the red color to apply */
+    font-size: 14px;
+}
+        font-size: 14px;
+}
         </style>
 <body>
     
@@ -78,29 +85,32 @@ $form_data = $_SESSION['form_data'] ?? [];
             <?php if (isset($error['invalid_dob'])): ?>
                 <span class="text-danger"><?= $error['invalid_dob'] ?></span>
                 <?php endif; ?>
-            </div>
+        </div>
             
-            <div class="mt-3">
-                <label>Select Course:</label>
-                <select name="course[]" multiple class="form-control">
-                <?php    
-                $courses = [];
-                $sql = "SELECT * FROM courses";
-                $result = $con->query($sql);
-                while($row = $result->fetch_assoc()){
-                    $courses[] = [
-                        'id' => $row['id'],
-                        'course_name' => $row['course_name']
-                    ];
-                }
-                foreach($courses as $course){
-                ?>
-                <option value="<?php echo $course['id'] ?>"><?php echo $course['course_name'] ?></option>
-                <?php
-                }
-                ?> 
-                </select>
-            </div>
+        <div class="mt-3">
+            <label>Select Course:</label>
+            <select name="course[]" multiple class="form-control">
+            <?php    
+            $courses = [];
+            $sql = "SELECT * FROM courses";
+            $result = $con->query($sql);
+            while($row = $result->fetch_assoc()){
+                $courses[] = [
+                    'id' => $row['id'],
+                    'course_name' => $row['course_name']
+                ];
+            }
+            foreach($courses as $course){
+            ?>
+            <option value="<?php echo $course['id'] ?>"><?php echo $course['course_name'] ?></option>
+            <?php
+            }
+            ?> 
+            </select>
+            <?php if (isset($error['invalid_courses'])): ?>
+            <span class="text-danger"><?= $error['invalid_courses'] ?></span>
+            <?php endif; ?>
+        </div>
 
         <div class="mt-4">
             <input class="btn btn-primary w-100" type="submit" name="register" value="Register">

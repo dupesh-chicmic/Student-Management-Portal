@@ -19,8 +19,12 @@ img.site-logo-img.w-50 {
 .content-header {
     padding: 20px;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     gap: 10px;
     background: antiquewhite;
     margin: 15px 0;
+}
+
+.btn-success {
+    height: 37px;
 }
